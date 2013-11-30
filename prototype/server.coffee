@@ -29,7 +29,8 @@ share.use 'connect', (req, callback) ->
   callback()
 ###
 
-webserver.use browserChannel {webserver}, (client) ->
+opts = {webserver:webserver,cors:'*'}
+webserver.use browserChannel opts, (client) ->
   stream = new Duplex objectMode:yes
   stream._write = (chunk, encoding, callback) ->
     console.log 's->c ', chunk
